@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>AJAX</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+
+<script>
+    function sendGreetingText() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/js_jquery_ajax_war_exploded/greet',
+            data: 'name=' + $('#exampleInputEmail1').val(),
+            dataType: 'text'
+        }).done(function(data) {
+            console.log('sendGreetingText');
+            console.log(data);
+            $('#myParag').after(data).after(' ');
+        }).fail(function(err){
+            alert(err);
+        });
+    }
+    function sendGreetingJson() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/js_jquery_ajax_war_exploded/greet',
+            data: {name: JSON.stringify({"email": $('#exampleInputEmail2').val()})},
+            dataType: 'json'
+        }).done(function(data) {
+            console.log('sendGreetingJson');
+            console.log(data);
+            $('#myParag').after(JSON.stringify(data).bold()).after(' ').after('Nice to meet you, ');
+        }).fail(function(err){
+            alert(err);
+        });
+    }
+</script>
+
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="sendGreetingText()">sendGreeting(text)</button>
+    </form>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail2">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="sendGreetingJson()">sendGreeting(json)</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            let result = true;
+            if ($('#first_name').val() === "") {
+                alert(`Заполните поле Имя`);
+                result = false;
+            }
+            if ($('#last_name').val() === "") {
+                alert(`Заполните поле Фамилия`);
+                result = false;
+            }
+            if ($('#sex').val() === "") {
+                alert(`Заполните поле Пол`);
+                result = false;
+            }
+            if ($('#description').val() === "") {
+                alert(`Заполните поле Описание`);
+                result = false;
+            }
+            return result;
+        }
+
+        function addRow() {
+            var firstName = $('#first_name').val();
+            var lastName = $('#last_name').val();
+            var sex = $('#sex').val();
+            var description = $('#description').val();
+
+            //получаем ссылку на последний элемент в таблице.
+            //и после него добавляем html
+            $('#myTable tr:last').after('<tr><td>' + firstName +'</td><td>' + lastName +'</td><td>' + sex +'</td><td>' + description +'</td></tr>');
+        }
+    </script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+    <form class="form-horizontal" action="">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="first_name">Имя:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="first_name" placeholder="Enter first name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="last_name">Фамилия:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="last_name" placeholder="Enter last name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="sex">Пол:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="sex" placeholder="Enter sex">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="description">Описание:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="description" placeholder="Enter description">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="reset" class="btn btn-default" onclick="if (validate()) addRow()">Add row</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <h2>Список</h2>
+    <table id="myTable" class="table">
+        <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Sex</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>Male</td>
+            <td>Description John</td>
+        </tr>
+        <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>Female</td>
+            <td>Description Mary</td>
+        </tr>
+        <tr>
+            <td>July</td>
+            <td>Dooley</td>
+            <td>Female</td>
+            <td>Description July</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
